@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+ 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <!-- custom css file cdn link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header class="header">
+
+    <a href="#" class="logo"> <i class="fas fa-utensils"></i> AIU Mart </a>
+
+    <form action="" class="search-form">
+        <input type="search" name="" placeholder="Search here..." id="searchBox">
+        <label for="searchBox" class="fas fa-search"></label>
+    </form>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <!-- <div class="fas fa-share" id="theme-btn"></div> -->
+        <div class="fas fa-user" id="loginButton"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+        <div onclick="togglePopup()" class="fas fa-chevron-right" id="shopping"></div>
+    </div>
+
+<!-- Checkout form -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <h1>Checkout</h1>
+    <form id="payment-form" class="checkout-form">
+        <table>
+            <tr>
+                <td colspan="2"><input  type="text" name="name" placeholder="Full Name" required></td>
+            </tr>
+            <tr>
+                <td><input type="email" name="email" placeholder="Email" required></td>
+                <td><input type="tel" name="phone" placeholder="Phone Number" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" name="address" placeholder="Address" required></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="city" placeholder="City" required></td>
+                <td><input type="text" name="state" placeholder="State" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" name="zip" placeholder="Zip Code" required></td>
+            </tr>
+        </table>
+        
+        <br>
+        <br>
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+        <button type="submit">Pay</button>
+    </form>
+</div>
+
+    <!-- Login Form -->
+<div id="loginForm">
+    <span class="close" onclick="closeLoginForm()">&times;</span>
+    <h2>Login</h2>
+    <br>
+    <form>
+        <label for="username">ID Number:</label><br>
+        <input type="number" id="username" name="username" maxlength="10" min=0 oninput="validity.valid||(value='');" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" maxlength="24" required><br><br>
+        <button type="submit" id="loginBtn"> Log In </button>
+    </form>
+</div>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <!-- <a href="#packages">packages</a> -->
+        <a href="#services">our products</a>
+        <!-- <a href="#pricing">pricing</a> -->
+        <a href="#review">reviews</a>
+        <a href="#blogs">newsbyte</a> 
+        <a href="#contact">contact</a>
+    </nav>
+
+     
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+<br>
+    <div class="image" data-aos="fade-down">
+        <img width="100px" src="images/mcmart.jpeg" alt="">
+    </div>
+
+    <div class="content" data-aos="fade-up">
+        <h3>Welcome To AIU Mart</h3>
+        <p>From school uniform accessories to ice cream, we've got it all! Navigate through the page to see our products.</p>
+        <a href="#" class="btn">explore now</a>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<br>
+<br>
+<br>
+
+<!-- packages section starts  -->
+
+<section class="packages" id="packages">
+
+    <h1 class="heading"> our <span>Products</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/pocky.png" alt="Pocky">
+                <h3> <i class="fas fa-utensils"></i> Pocky </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿21.00 </div>
+                <p>Glico Pocky Chocolate 45g </p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/minereWater.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Minere Natural </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿100.00 <span>฿119.00</span> </div>
+                <p>Mineral Water 750ml</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/mamaNoodles.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Mama Instant Noodles </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿60.00</span> </div>
+                <p>Oriental Kitchen 1 pack</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/luxSoap.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Lux Bath </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿110.00 <span>฿139.00</span> </div>
+                <p>Soft Touch 500ml. pump</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/kitkat.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> KitKat Chocolate </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿28.00 </div>
+                <p>Premium 35g</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/Cornetto.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Cornetto </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿35.00 </div>
+                <p>Walls royal Chocolate 86g</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/Lays.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Lays </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿46.00 </div>
+                <p>Party pack potato chips original</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/Pringles.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Pringles </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿39 <span>฿50</span> </div>
+                <p>Potato chips Original 102g</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/Trolli.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Trolli Bitecrawlers </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿34.00</span> </div>
+                <p>Jelly 80g</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/Vaseline.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Vaseline Pure </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿132.00 </div>
+                <p>Reparing Original</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/colgateToothpaste.png" alt="">
+                <h3> <i class="fas fa-utensils"></i> Colgate </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿169.00 </div>
+                <p>Total fresh Advanced Fresh Gel</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/colgateToothbrush.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Colgate slim soft  </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿58.00 <span>฿61.00 </span> </div>
+                <p>Deep clean ultra soft Toothbrush</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/niveaSunscreen.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Nivea Sunscreen </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿359.00 </div>
+                <p>Triple Protect Soothing and fresh body Serum SPF50 180ml </p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/pansonic.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Panasonic Battery </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿69.00 </div>
+                <p>Manganese Battery AAA pack 4</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/pen.png" alt="">
+                <h3> <i class="fas fa-utensils"></i> Ball Point Pen </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿30.00 </div>
+                <p>0.7mm. blue</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/acctPrinciples.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Accounting Principles </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿1,038.75 </div>
+                <p>9th edition Canadian, Volume 1 Weygandt Test Bank</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/paper.jpeg" alt="">
+                <h3> <i class="fas fa-utensils"></i> Copier Paper </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿55.00 </div>
+                <p>A4 80 gsm (100 Sheets)</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/inhaler.jpeg">
+                <h3> <i class="fas fa-utensils"></i> Poysian Inhaler </h3>
+            </div>
+            <div class="content">
+                <div class="price"> ฿24.00 </div>
+                <p>1.7ml</p>
+                <a href="#" class="btn"> Order now</a>
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+
+<!-- packages section ends -->
+ 
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading"> <span>Reviews</span> </h1>
+
+    <div class="swiper-container review-slider" data-aos="zoom-in">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide">
+                <img src="images/pic-1.jpg" alt="">
+                <h3>Priscilla Muan</h3>
+                <p>I can't speak highly enough about my experience at AIU Mart. The staff were incredibly helpful and knowledgeable, guiding me through their wide selection of products with genuine care. The atmosphere was inviting, and I left feeling satisfied with my purchase. Highly recommend!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <img src="images/pic-2.jpg" alt="">
+                <h3>Priyesh Kumar</h3>
+                <p>What a gem of a store! From the moment I walked in, I was greeted with warmth and enthusiasm. The variety of products is impressive, and the quality is top-notch. The attention to detail in their displays made browsing a delight. I'll definitely be returning to AIU Mart for all my future shopping needs!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <img src="images/pic-3.jpg" alt="">
+                <h3>Toto Yo</h3>
+                <p>"I'm so glad I stumbled upon AIU Mart! Not only do they offer a fantastic array of products, but the customer service is exceptional. The staff went above and beyond to assist me in finding exactly what I was looking for, making the whole shopping experience enjoyable and stress-free. This is now my go-to spot!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <img src="images/pic-4.jpg" alt="">
+                <h3>Pann Ei Ko Ko</h3>
+                <p>5 stars all around for AIU Mart! The moment I stepped inside, I was greeted with smiles and a genuine willingness to help. The layout of the store is intuitive, making it easy to navigate and find what I needed. The quality of their merchandise exceeded my expectations, and I left feeling like I'd found a hidden treasure. Can't wait to return!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+        </div>
+
+      
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+<br>
+<br>
+
+
+<!-- blog section starts  -->
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>Newsbyte</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/img1.png" alt="">
+            </div>
+            <div class="content">
+                <h3>Festival of Faith 2024: Loving Beyond Borders</h3>
+
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1st April, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/img2.jpg" alt="">
+            </div>
+            <div class="content">
+                <h3>AIU Joins the International Conference in Pattaya 2024</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1st April, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <div class="image">
+                <img src="images/img3.png" alt="">
+            </div> 
+            <div class="content">
+                <h3>AIU’s Community Public Health Outreach Ministry 2024</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i> 1st April, 2024 </a>
+                    <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- blog section ends -->
+
+<br>
+<br>
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span>contact</span> us </h1>
+
+    <form action="" data-aos="zoom">
+
+        <div class="inputBox">
+            <input type="text" placeholder="Name" data-aos="fade-up">
+            <input type="email" placeholder="Email" data-aos="fade-up">
+        </div>
+
+        <div class="inputBox">
+            <input type="text" placeholder="Subject" data-aos="fade-up">
+            <input type="number" placeholder="Phone No." data-aos="fade-up">
+        </div>
+
+        <textarea name="" placeholder="Your message" id="" cols="30" rows="10" data-aos="fade-up"></textarea>
+        
+        <input type="submit" value="send message" class="btn">
+
+    </form>
+
+</section>
+
+<!-- contact section ends -->
+
+<br>
+<br>
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <!-- <div class="box" data-aos="fade-up">
+            <h3>our branches</h3>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> india </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> russia </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> japan </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> france </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> canada </a>
+        </div> -->
+
+        <div class="box" data-aos="fade-up">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-chevron-right"></i> home </a>
+            <!-- <a href="#"> <i class="fas fa-chevron-right"></i> packages </a> -->
+            <a href="#"> <i class="fas fa-chevron-right"></i> our products </a>
+         <!--<a href="#"> <i class="fas fa-chevron-right"></i> pricing </a> -->   
+            <a href="#"> <i class="fas fa-chevron-right"></i> review </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> contact </a>
+            <a href="#"> <i class="fas fa-chevron-right"></i> newsbyte </a>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#"> <i class="fas fa-envelop"></i> registrar@apiu.edu </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Saraburi, Thailand 18180 </a>
+        </div>
+
+        <div class="box" data-aos="fade-up">
+            <h3>follow us</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+<script>
+
+AOS.init({
+    duration:800,
+    delay:400
+});
+
+</script>
+
+</body>
+</html>
